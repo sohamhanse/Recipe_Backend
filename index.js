@@ -146,6 +146,24 @@ app.post("/:recipeid/to/:userid", async (req, res) => {
     }
 });
 
+app.get("/get-user-recipes/:userid", async (req, res) => {
+    const { userid } = req.params;
+    try {
+        const user = await userModel.findById(userid);
+        res.status(200).json({
+            success: true,
+            message: "Recipes fetched successfully",
+            data: user.recipes
+        });
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: "Failed to fetch recipes",
+            error: err.message
+        });
+    }
+});
+
 app.get("/get-recipes", async (req, res) => {
     try {
         const recipes = await recipeModel.find({});

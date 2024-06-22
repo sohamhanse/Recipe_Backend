@@ -193,13 +193,6 @@ app.get("/get-recipe/:id", async (req, res) => {
     const id  = "667686243b10400ef6fc98a2";
     try {
         const recipe = await recipeModel.findById(id);
-        console.log(recipe);
-        if (!recipe) {
-            return res.status(404).json({
-                success: false,
-                message: "Recipe not found"
-            });
-        }
 
         res.status(200).json({
             success: true,
@@ -213,6 +206,7 @@ app.get("/get-recipe/:id", async (req, res) => {
             error: err.message
         });
     }
+    
 });
 
 app.listen(port, () => {

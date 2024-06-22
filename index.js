@@ -150,6 +150,13 @@ app.get("/get-user-recipes/:userid", async (req, res) => {
     const { userid } = req.params;
     try {
         const user = await userModel.findById(userid);
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+
         res.status(200).json({
             success: true,
             message: "Recipes fetched successfully",
@@ -163,6 +170,7 @@ app.get("/get-user-recipes/:userid", async (req, res) => {
         });
     }
 });
+
 
 app.get("/get-recipes", async (req, res) => {
     try {

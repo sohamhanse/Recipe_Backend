@@ -204,14 +204,14 @@ app.get("/get-recipe/:id", async (req, res) => {
     
             res.status(200).json({
                 success: true,
-                message: "Recipe fetched successfully",
+                message: "Recipe fetched successfully" + id,
                 data: recipe
             });
         } catch (err) {
             console.error(err); 
             res.status(500).json({
                 success: false,
-                message: "Failed to fetch recipe",
+                message: "Failed to fetch recipe" + id,
                 error: err.message
             });
         }

@@ -63,7 +63,7 @@ app.post("/login", async (req, res) => {
 
     try {
         const user = await userModel.findOne({ username });
-        if (!user || user.password !== password) {
+        if (!user || user.password != password) {
             return res.status(400).json({
                 success: false,
                 message: "Invalid username or password"
